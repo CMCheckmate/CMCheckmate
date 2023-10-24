@@ -9,14 +9,14 @@ const INFO_BLOCKS = document.getElementsByClassName("info");
 const SUS = document.getElementById("sus");
 // Animation positions
 const MOVE_POSITIONS = {
-    1: [[30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [0, 0]], 
-    2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    3: [[0, 0], [-17, -4], [-17, -4], [0, -8], [0, -8], [0, -8], [0, -8], [-17, -4], [-17, -4]], 
-    4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [11, -8], [11, -8], [11, -8]], 
-    6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -40], [0, -80], [0, -80], [0, -80]], 
-    7: [[0, 0], [0, 0], [-6, 3], [-6, 3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    1: [[30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [0, 0]], 
+    2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    3: [[0, 0], [-17, -4], [-17, -4], [0, -8], [0, -8], [0, -8], [0, -8], [0, -8], [-17, -4], [-17, -4]], 
+    4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [6, -4], [11, -8], [11, -8], [11, -8]], 
+    6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -40], [0, -40], [0, -80], [0, -80], [0, -80]], 
+    7: [[0, 0], [0, 0], [-6, 3], [-6, 3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 }
 
 // Functions
@@ -74,20 +74,18 @@ function toggleSections() {
     }
 
     if (window.scrollY > TITLE_BLOCK.offsetHeight) {
-        let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight) / (Object.keys(MOVE_POSITIONS).length);
+        let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight) / (MOVE_POSITIONS[1].length - 1);
         let move = Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / moveSection);
         let moveAmount = ((window.scrollY - TITLE_BLOCK.offsetHeight) % moveSection) / moveSection;
-        
-        if (move <= Object.keys(MOVE_POSITIONS).length) {
-            var position = [];
-            for (let piece in MOVE_POSITIONS) {
-                position.push(
-                    `${MOVE_POSITIONS[piece][move - 1][0] + (MOVE_POSITIONS[piece][move][0] - MOVE_POSITIONS[piece][move - 1][0]) * moveAmount}vw 
-                    ${MOVE_POSITIONS[piece][move - 1][1] + (MOVE_POSITIONS[piece][move][1] - MOVE_POSITIONS[piece][move - 1][1]) * moveAmount}vh`);
-            }
-    
-            CONTENT_BLOCK.style.backgroundPosition = position.join(", ");
+
+        var position = [];
+        for (let piece in MOVE_POSITIONS) {
+            position.push(
+                `${MOVE_POSITIONS[piece][move - 1][0] + (MOVE_POSITIONS[piece][move][0] - MOVE_POSITIONS[piece][move - 1][0]) * moveAmount}vw 
+                ${MOVE_POSITIONS[piece][move - 1][1] + (MOVE_POSITIONS[piece][move][1] - MOVE_POSITIONS[piece][move - 1][1]) * moveAmount}vh`);
         }
+
+        CONTENT_BLOCK.style.backgroundPosition = position.join(", ");
     }
 }
 
