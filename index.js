@@ -1,5 +1,4 @@
 // Constants
-const TITLE_TIME = 15 * 1000;
 // Document elements
 const ROOT = document.documentElement;
 const TITLE_BLOCK = document.getElementById("title");
@@ -18,6 +17,10 @@ const MOVE_POSITIONS = {
     7: [[0, 0], [0, 0], [-6, 3], [-6, 3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
     8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
 }
+// Display
+const TITLE_TIME = 15 * 1000;
+const INFO_SCROLL_AMOUNT = 0.25;  // Percentage of viewport heights
+const BACKGROUND_SCROLL_AMOUNT = CONTENT_BLOCK.offsetHeight / 25;
 
 // Functions
 function toggleAnimation(element, name, duration) {
@@ -55,7 +58,7 @@ function toggleSections() {
     var height = TITLE_BLOCK.offsetHeight;
     for (let section of INFO_BLOCKS) {
         // Information block in view
-        if (window.scrollY + window.innerHeight * 0.25 > height) {
+        if (window.scrollY + window.innerHeight * INFO_SCROLL_AMOUNT > height) {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
                 section.style.animation = 'none';
                 section.offsetHeight;
@@ -73,10 +76,11 @@ function toggleSections() {
         height += section.offsetHeight;
     }
 
-    if (window.scrollY > TITLE_BLOCK.offsetHeight) {
-        let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight) / (MOVE_POSITIONS[1].length - 1);
-        let move = Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / moveSection);
-        let moveAmount = ((window.scrollY - TITLE_BLOCK.offsetHeight) % moveSection) / moveSection;
+    // Set background animation stage
+    if (window.scrollY > TITLE_BLOCK.offsetHeight + BACKGROUND_SCROLL_AMOUNT && window.scrollY < TITLE_BLOCK.offsetHeight + CONTENT_BLOCK.offsetHeight - window.innerHeight) {
+        let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight - BACKGROUND_SCROLL_AMOUNT) / (MOVE_POSITIONS[1].length - 1);
+        let move = Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight - BACKGROUND_SCROLL_AMOUNT) / moveSection);
+        let moveAmount = ((window.scrollY - TITLE_BLOCK.offsetHeight - BACKGROUND_SCROLL_AMOUNT) % moveSection) / moveSection;
 
         var position = [];
         for (let piece in MOVE_POSITIONS) {
