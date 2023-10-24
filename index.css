@@ -45,39 +45,6 @@
     65% { transform: translatey(-30%) rotate(0deg); background-image: url("src/imgs/queen.png"); }
     100% { transform: translateY(-10%); background-image: url("src/imgs/pawn.png"); }
 }
-/* Background */
-/* @keyframes Move1 {
-    0% { background-position: var(--Move0); }
-    100% { background-position: var(--Move1); }
-}
-@keyframes Move2 {
-    0% { background-position: var(--Move1); }
-    100% { background-position: var(--Move2); }
-}
-@keyframes Move3 {
-    0% { background-position: var(--Move2); }
-    100% { background-position: var(--Move3); }
-}
-@keyframes Move4 {
-    0% { background-position: var(--Move3); }
-    100% { background-position: var(--Move4); }
-}
-@keyframes Move5 {
-    0% { background-position: var(--Move4); }
-    100% { background-position: var(--Move5); }
-}
-@keyframes Move6 {
-    0% { background-position: var(--Move5); }
-    100% { background-position: var(--Move6); }
-}
-@keyframes Move7 {
-    0% { background-position: var(--Move6); }
-    100% { background-position: var(--Move7); }
-}
-@keyframes Move8 {
-    0% { background-position: var(--Move7); }
-    100% { background-position: var(--Move8); }
-} */
 
 /* Responsive Layout */
 @media ( max-width: 350px ) {
