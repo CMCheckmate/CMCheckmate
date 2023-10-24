@@ -8,29 +8,19 @@ const NAME_BLOCKS = document.getElementsByClassName("name");
 const INFO_BLOCKS = document.getElementsByClassName("info");
 const SUS = document.getElementById("sus");
 // Animation positions
-// const MOVE_POSITIONS = [
-//     "30vw 0, 0, 0, 0, 0, 0, 0, 0",
-//     "30vw 0, 0, -17vw -4vh, 0, 0, 0, 0, 0",
-//     "30vw 0, 0, -17vw -4vh, 0, 0, 0, -6vw 3vh, 0", 
-//     "30vw 0, 0, 0vw -8vh, 0, 0, 0, -6vw 3vh, 0", 
-//     "30vw 0, 0, 0vw -8vh, 0, 0, 0, 0, 0", 
-//     "30vw 0, 0, 0vw -8vh, 0, 0, 0vw -40vh, 0, 0", 
-//     "30vw 0, 0, 0vw -8vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
-//     "30vw 0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
-//     "0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0"
-// ];
-// for (let pos = 0; pos < MOVE_POSITIONS.length; pos++) {
-//     ROOT.style.setProperty(`--Move${pos}`, MOVE_POSITIONS[pos]);
-// }
-const MOVE_POSITIONS = {
-    1: [[30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [30, 0], [0, 0]], 
-    2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    3: [[0, 0], [-17, -4], [-17, -4], [0, -8], [0, -8], [0, -8], [0, -8], [-17, -4], [-17, -4]], 
-    4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [11, -8], [11, -8], [11, -8]], 
-    6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -40], [0, -80], [0, -80], [0, -80]], 
-    7: [[0, 0], [0, 0], [-6, 3], [-6, 3], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-    8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+const MOVE_POSITIONS = [
+    "30vw 0, 0, 0, 0, 0, 0, 0, 0",
+    "30vw 0, 0, -17vw -4vh, 0, 0, 0, 0, 0",
+    "30vw 0, 0, -17vw -4vh, 0, 0, 0, -6vw 3vh, 0", 
+    "30vw 0, 0, 0vw -8vh, 0, 0, 0, -6vw 3vh, 0", 
+    "30vw 0, 0, 0vw -8vh, 0, 0, 0, 0, 0", 
+    "30vw 0, 0, 0vw -8vh, 0, 0, 0vw -40vh, 0, 0", 
+    "30vw 0, 0, 0vw -8vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
+    "30vw 0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
+    "0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0"
+];
+for (let pos = 0; pos < MOVE_POSITIONS.length; pos++) {
+    ROOT.style.setProperty(`--Move${pos}`, MOVE_POSITIONS[pos]);
 }
 
 // Functions
@@ -87,40 +77,25 @@ function toggleSections() {
         height += section.offsetHeight;
     }
 
-    // // Toggle background animations
-    // // Calculate background iteration
-    // var move = Math.max(0, Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / 
-    // ((CONTENT_BLOCK.offsetHeight - window.innerHeight) / (MOVE_POSITIONS.length))));
+    // Toggle background animations
+    // Calculate background iteration
+    var move = Math.max(0, Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / 
+    ((CONTENT_BLOCK.offsetHeight - window.innerHeight) / (MOVE_POSITIONS.length))));
     
-    // // Reverse background iteration animation
-    // if (CONTENT_BLOCK.style.animationName == `Move${move + 1}`) {
-    //     if (CONTENT_BLOCK.style.animationDirection != "reverse") {
-    //         CONTENT_BLOCK.style.animation = 'none';
-    //         CONTENT_BLOCK.offsetHeight;
-    //         CONTENT_BLOCK.style.animation = `Move${move + 1} 1s reverse`;
-    //         CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
-    //     }
-    // // Play background iteration animation
-    // } else if (CONTENT_BLOCK.style.animationName != `Move${move}` || CONTENT_BLOCK.style.animationDirection == "reverse") {
-    //     CONTENT_BLOCK.style.animation = 'none';
-    //     CONTENT_BLOCK.offsetHeight;
-    //     CONTENT_BLOCK.style.animation = `Move${move} 1s`;
-    //     CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
-    // }
-
-    if (window.scrollY > TITLE_BLOCK.offsetHeight) {
-        let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight) / (Object.keys(MOVE_POSITIONS).length);
-        let move = Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / moveSection);
-        let moveAmount = ((window.scrollY - TITLE_BLOCK.offsetHeight) % moveSection) / moveSection;
-
-        var position = [];
-        for (let piece in MOVE_POSITIONS) {
-            position.push(
-                `${MOVE_POSITIONS[piece][move - 1][0] + (MOVE_POSITIONS[piece][move][0] - MOVE_POSITIONS[piece][move - 1][0]) * moveAmount}vw 
-                ${MOVE_POSITIONS[piece][move - 1][1] + (MOVE_POSITIONS[piece][move][1] - MOVE_POSITIONS[piece][move - 1][1]) * moveAmount}vh`);
+    // Reverse background iteration animation
+    if (CONTENT_BLOCK.style.animationName == `Move${move + 1}`) {
+        if (CONTENT_BLOCK.style.animationDirection != "reverse") {
+            CONTENT_BLOCK.style.animation = 'none';
+            CONTENT_BLOCK.offsetHeight;
+            CONTENT_BLOCK.style.animation = `Move${move + 1} 1s reverse`;
+            CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
         }
-
-        CONTENT_BLOCK.style.backgroundPosition = position.join(", ");
+    // Play background iteration animation
+    } else if (CONTENT_BLOCK.style.animationName != `Move${move}` || CONTENT_BLOCK.style.animationDirection == "reverse") {
+        CONTENT_BLOCK.style.animation = 'none';
+        CONTENT_BLOCK.offsetHeight;
+        CONTENT_BLOCK.style.animation = `Move${move} 1s`;
+        CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
     }
 }
 
