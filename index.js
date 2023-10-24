@@ -59,7 +59,7 @@ function toggleSections() {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
                 section.style.animation = 'none';
                 section.offsetHeight;
-                section.style.animation = "SlideIn 2s";
+                section.style.animation = "SlideIn 0.5s";
                 section.style.transform = "translateX(0)";
             }
         // Information block out of view
