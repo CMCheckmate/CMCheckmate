@@ -34,7 +34,7 @@
 }
 
 @keyframes SlideIn {
-    0% { transform: translateX(-106%); }
+    0% { transform: translateX(-110%); }
     100% { transform: translateX(0); }
 }
 /* Logo */
@@ -227,7 +227,7 @@ body {
     margin: 3%;
     padding: 2%;
 
-    transform: translateX(-106%);
+    transform: translateX(-110%);
     animation-timing-function: ease-out;
 
     display: flex;

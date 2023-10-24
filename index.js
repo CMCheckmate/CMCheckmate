@@ -63,15 +63,15 @@ function toggleSections() {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
                 section.style.animation = 'none';
                 section.offsetHeight;
-                section.style.animation = "SlideIn 1s";
+                section.style.animation = "SlideIn 2s";
                 section.style.transform = "translateX(0)";
             }
         // Information block out of view
         } else if (section.style.animationDirection != "reverse" && section.style.animationName != "") {
             section.style.animation = 'none';
             section.offsetHeight;
-            section.style.animation = "SlideIn 1s reverse";
-            section.style.transform = "translateX(-106%)";
+            section.style.animation = "SlideIn 0.5s reverse";
+            section.style.transform = "translateX(-110%)";
         }
 
         height += section.offsetHeight;
