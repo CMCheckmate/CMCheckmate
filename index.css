@@ -19,6 +19,13 @@
     100% { background-color: rgb(60, 60, 60); }
 }
 
+/* Scroll bounce */
+@keyframes scrollBounce {
+    0% { top: -15% }
+    50% { top: -20% }
+    100% { top: -15% }
+}
+
 /* Display name */
 @keyframes typing {
     0% { width: 0; }
@@ -128,6 +135,34 @@ body {
 
     font-weight: 500;
 }
+/* Scroll arrow */
+#title > span {
+    position: relative;
+    top: 15%;
+
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 150%;
+}
+#title > span > h3 {
+    font-weight: 500;
+}
+#title > span > button {
+    position: relative;
+    top: -15%;
+
+    animation: scrollBounce 2s infinite;
+
+    background: none;
+    border: none;
+
+    line-height: 50%;
+    color: white;
+    font-size: 200%;
+}
+#title > span > button:hover {
+    cursor: pointer;
+}
 
 /* Display names */
 #nameBlock {
@@ -144,6 +179,8 @@ body {
     font-size: 3vw;
 }
 #actualName {
+    margin: 0.5% 0;
+
     display: none;
 }
 #username {
