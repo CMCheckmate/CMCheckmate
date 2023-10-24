@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    
+    <title>CMCheckmate</title>
+    <link rel="icon" href="src/imgs/favicon.png">
+    
+    <link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="main">
+        <!-- Header -->
+        <div id="header">
+            <a href="index.html">
+                <img alt="logo_icon" src="src/imgs/pawn.png">
+            </a>
+            <button id="aboutButton" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About</button>
+            <button id="socialsButton" onclick="document.getElementById('socials').scrollIntoView({behavior: 'smooth'});">Socials</button>
+        </div>
+
+        <!-- Home screen -->
+        <div id="title">
+            <div id="nameBlock">
+                <div class="name" id="username">
+                    <h1>CMCheckmate(</h1>
+                    <button onclick="toggleAnimation(this, 'Promote', 2000);"></button>
+                    <h1>)</h1>
+                </div>
+                <div class="name" id="actualName">
+                    <h1>Ming Ray Goy</h1>
+                </div>
+            </div>
+            <h2>Casual Program Developer</h2>
+        </div>
+
+        <!-- Main information -->
+        <div id="content">
+            <!-- Introduction -->
+            <div class="info" id="about">
+                <h2>About Me</h2>
+
+                <p>Hi! My name is Ming Ray Goy.</p>
+                <p>
+                    I'm a 19-year old first year student studying Engineering at the University of Auckland.
+                    <br>
+                    I'll be entering Software or Computer Systems Engineering in 2024.
+                </p>
+                <p>Also, I'm Malaysian and can fluently speak English and Chinese, along with Cantonese, Malay and Hokkien.</p>
+            </div>
+          
+            <!-- Qualifications -->
+            <div class="info" id="qualifications">
+                <h2>Qualifications</h2>
+
+                <p>Completed NCEA Level 3 with Overall Excellence.</p>
+                <p>Achieved the “Scholarship Award” in 2022 with 3 Scholarships in: </p>
+                <ul>
+                    <li>Technology</li>
+                    <li>Calculus</li>
+                    <li>Physics</li>
+                </ul>
+            </div>
+        
+            <!-- Coding languages -->
+            <div class="info" id="languages">
+                <h2>Languages</h2>
+
+                <p>I've created programs, games and websites in a couple of languages.</p>
+                <p>My experience involves: </p>
+                <ul>
+                    <li>
+                        Python
+                        <img alt="python_icon" src="src/imgs/python.png">
+                    </li>
+
+                    <li>
+                        C
+                        <img alt="C_icon" src="src/imgs/C.png">
+                    </li>
+
+                    <li>
+                        HTML/CSS
+                        <img alt="HTML_icon" src="src/imgs/HTML.png">
+                        <img alt="CSS_icon" src="src/imgs/CSS.png">
+                    </li>
+
+                    <li>
+                        Javascript
+                        <img alt="Javascript_icon" src="src/imgs/JS.png">
+                    </li>
+
+                    <li>
+                        PHP/SQL
+                        <img alt="PHP_icon" src="src/imgs/PHP.png">
+                        <img alt="SQL_icon" src="src/imgs/SQL.png">
+                    </li>
+
+                    <li>
+                        MATLAB
+                        <img alt="MATLAB_icon" src="src/imgs/MATLAB.png">
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Coded projects -->
+            <div class="info" id="projects">
+                <h2>Projects</h2>
+
+                <p>Here are some of the projects I've been working on: </p>
+                <ul>
+                    <li>
+                        <a href="https://dietlog.000webhostapp.com/diet_logger.html" target="_blank"><i>DietLog</i></a>
+                        <p>Provides nutritional information and lets users track their meals</p>
+                    </li>
+                    <li>
+                    <a href="https://vidtoascii.000webhostapp.com" target="_blank"><i>Video To ASCII</i></a>
+                    <p>Converts videos into text art</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Contacts -->
+            <div class="info" id="socials">
+                <h2>Socials</h2>
+
+                <p>Feel free to contact me through any of my contacts below :D</p>
+                <div id="links">
+                    <a href="https://github.com/CMCheckmate" target="_blank">
+                        <img alt="github_icon" src="src/imgs/github.png">
+                        <span>
+                            <h3>Github</h3>
+                            <i>CMCheckmate</i>
+                        </span>
+                    </a>
+                    <a href="https://discord.com/users/cmcheckmate" target="_blank">
+                        <img alt="discord_icon" src="src/imgs/discord.png">
+                        <span>
+                            <h3>Discord</h3>
+                            <i>cmcheckmate</i>
+                        </span>
+                    </a>
+                    <a href="mailto:mingraygoy@gmail.com" target="_blank">
+                        <img alt="gmail_icon" src="src/imgs/gmail.png">
+                        <span>
+                            <h3>Email</h3>
+                            <i>mingraygoy@gmail.com</i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <h4>© Ming Ray Goy 2023</h4>
+            <p>All Logo rights are of their respective owners.</p>
+        </div>
+    </div>
+    <p id="sus">ඞ</p>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
