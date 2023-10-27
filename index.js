@@ -14,17 +14,27 @@ const BACKGROUND = {
     "scroll": CONTENT_BLOCK.offsetHeight / 25,  // Height in px
     "size": [1, 0.75],  // Fraction of maximum dimension for landscape and portrait orientations
     "offset": [1, 0.5],  // Offset from left and top in percentage of dimension
-    "positions": {
+    "positions": [{  // Landscape vs portrait animation positions
         1: [[Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], 
         [Infinity, 0], [Infinity, 0], [0, 0]], 
         2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-        3: [[0, 0], [-8, -5], [-8, -5], [0, -8], [0, -8], [0, -8], [0, -8], [0, -8], [-8, -5], [-8, -5]], 
+        3: [[0, 0], [-16, -2.5], [-16, -2.5], [0, -5.5], [0, -5.5], [0, -5.5], [0, -5.5], [0, -5.5], [-16, -2.5], [-16, -2.5]], 
         4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
-        5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [3, -5], [5, -8], [5, -8], [5, -8]], 
-        6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -40], [0, -40], [0, -80], [0, -Infinity], [0, -Infinity]], 
-        7: [[0, 0], [0, 0], [-3, 4], [-3, 4], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [6, -3], [10.5, -5.5], [10.5, -5.5], [10.5, -5.5]], 
+        6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -27], [0, -27], [0, -Infinity], [0, -Infinity], [0, -Infinity]], 
+        7: [[0, 0], [0, 0], [-5.5, 2.5], [-5.5, 2.5], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
         8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
-    }
+    }, {
+        1: [[Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], 
+        [Infinity, 0], [Infinity, 0], [0, 0]], 
+        2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        3: [[0, 0], [-12, -2], [-12, -2], [0, -4], [0, -4], [0, -4], [0, -4], [0, -4], [-12, -2], [-12, -2]], 
+        4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [6, -3], [8, -4], [8, -4], [8, -4]], 
+        6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -20], [0, -20], [0, -Infinity], [0, -Infinity], [0, -Infinity]], 
+        7: [[0, 0], [0, 0], [-4, 2], [-4, 2], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    }]
 }
 // Variables
 var backgroundSettings = {
@@ -33,21 +43,7 @@ var backgroundSettings = {
         BACKGROUND["offset"][0] * (window.innerWidth - (window.innerHeight * BACKGROUND["size"][0])), 
         window.innerHeight * (1 - BACKGROUND["size"][0])
     ],
-    "positions": BACKGROUND["positions"],
-}
-const MOVE_POSITIONS = [
-    "30vw 0, 0, 0, 0, 0, 0, 0, 0",
-    "30vw 0, 0, -17vw -4vh, 0, 0, 0, 0, 0",
-    "30vw 0, 0, -17vw -4vh, 0, 0, 0, -6vw 3vh, 0", 
-    "30vw 0, 0, 0vw -8vh, 0, 0, 0, -6vw 3vh, 0", 
-    "30vw 0, 0, 0vw -8vh, 0, 0, 0, 0, 0", 
-    "30vw 0, 0, 0vw -8vh, 0, 0, 0vw -40vh, 0, 0", 
-    "30vw 0, 0, 0vw -8vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
-    "30vw 0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0", 
-    "0, 0, -17vw -4vh, 0, 11vw -8vh, 0 -80vh, 0, 0"
-];
-for (let pos = 0; pos < MOVE_POSITIONS.length; pos++) {
-    ROOT.style.setProperty(`--Move${pos}`, MOVE_POSITIONS[pos]);
+    "positions": BACKGROUND["positions"][0],
 }
 
 // Functions
@@ -90,7 +86,7 @@ function toggleSections() {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
                 section.style.animation = 'none';
                 section.offsetHeight;
-                section.style.animation = "SlideIn 2s";
+                section.style.animation = "SlideIn 0.5s";
                 section.style.transform = "translateX(0)";
             }
         // Information block out of view
@@ -141,6 +137,7 @@ function updateSettings() {
             (window.innerWidth * (1 - BACKGROUND["size"][1])), 
             BACKGROUND["offset"][1] * (window.innerHeight - (window.innerWidth * BACKGROUND["size"][1]))
         ];
+        backgroundSettings["positions"] = BACKGROUND["positions"][1];
         if (!backgroundSize.includes(` ${window.innerWidth * BACKGROUND["size"][1]}`)) {
             CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][1] * 100}vw ${BACKGROUND["size"][1] * 100}vw`;
         }
@@ -150,20 +147,23 @@ function updateSettings() {
             BACKGROUND["offset"][0] * (window.innerWidth - (window.innerHeight * BACKGROUND["size"][0])), 
             window.innerHeight * (1 - BACKGROUND["size"][0])
         ];
+        backgroundSettings["positions"] = BACKGROUND["positions"][0];
         if (!backgroundSize.includes(` ${window.innerHeight}`)) {
             CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][0] * 100}vh ${BACKGROUND["size"][0] * 100}vh`;
         }
     }
     // Update amount for infinite movement
-    for (let piece in BACKGROUND["positions"]) {
-        for (let positionIndex = 0; positionIndex < BACKGROUND["positions"][piece].length; positionIndex++) {
-            for (let direction = 0; direction < BACKGROUND["positions"][piece][positionIndex].length; direction++) {
-                if (Math.abs(BACKGROUND["positions"][piece][positionIndex][direction]) == Infinity) {
-                    if (BACKGROUND["unit"] == "vw") {
-                        BACKGROUND["positions"][piece][positionIndex][direction] = Math.sign(BACKGROUND["positions"][piece][positionIndex][direction]) * 
+    for (let piece in backgroundSettings["positions"]) {
+        for (let positionIndex = 0; positionIndex < backgroundSettings["positions"][piece].length; positionIndex++) {
+            for (let direction = 0; direction < backgroundSettings["positions"][piece][positionIndex].length; direction++) {
+                if (Math.abs(backgroundSettings["positions"][piece][positionIndex][direction]) == Infinity) {
+                    if (backgroundSettings["unit"] == "vw") {
+                        backgroundSettings["positions"][piece][positionIndex][direction] = 
+                        Math.sign(backgroundSettings["positions"][piece][positionIndex][direction]) * 
                         (window.innerHeight * BACKGROUND["size"][0]) / (window.innerWidth * BACKGROUND["size"][1]) * 100;
                     } else {
-                        BACKGROUND["positions"][piece][positionIndex][direction] = Math.sign(BACKGROUND["positions"][piece][positionIndex][direction]) * 
+                        backgroundSettings["positions"][piece][positionIndex][direction] = 
+                        Math.sign(backgroundSettings["positions"][piece][positionIndex][direction]) * 
                         (window.innerWidth * BACKGROUND["size"][1]) / (window.innerHeight * BACKGROUND["size"][0]) * 100;
                     }
                 }
@@ -172,26 +172,6 @@ function updateSettings() {
     }
     // Update background sections
     toggleSections();
-    // Toggle background animations
-    // Calculate background iteration
-    var move = Math.max(0, Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / 
-    ((CONTENT_BLOCK.offsetHeight - window.innerHeight) / (MOVE_POSITIONS.length))));
-    
-    // Reverse background iteration animation
-    if (CONTENT_BLOCK.style.animationName == `Move${move + 1}`) {
-        if (CONTENT_BLOCK.style.animationDirection != "reverse") {
-            CONTENT_BLOCK.style.animation = 'none';
-            CONTENT_BLOCK.offsetHeight;
-            CONTENT_BLOCK.style.animation = `Move${move + 1} 1s reverse`;
-            CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
-        }
-    // Play background iteration animation
-    } else if (CONTENT_BLOCK.style.animationName != `Move${move}` || CONTENT_BLOCK.style.animationDirection == "reverse") {
-        CONTENT_BLOCK.style.animation = 'none';
-        CONTENT_BLOCK.offsetHeight;
-        CONTENT_BLOCK.style.animation = `Move${move} 1s`;
-        CONTENT_BLOCK.style.backgroundPosition = MOVE_POSITIONS[move];
-    }
 }
 
 // Events
