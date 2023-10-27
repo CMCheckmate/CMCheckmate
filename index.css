@@ -109,6 +109,7 @@ body {
     display: flex;
     align-items: center;
 
+    image-rendering: -webkit-optimize-contrast;
     background-image: linear-gradient(rgb(64, 64, 64, 0.9), rgb(50, 50, 50, 1));
     border-bottom: 5px solid rgb(64, 64, 64);
 }
@@ -209,14 +210,13 @@ body {
 #content {
     display: flex;
     flex-direction: column;
-    
+    image-rendering: -webkit-optimize-contrast;
     background-image: url("src/imgs/board_win.png"), url("src/imgs/board_bishop.png"), url("src/imgs/board_knight.png"), 
     url("src/imgs/board_pawns.png"), url("src/imgs/board_rook.png"), url("src/imgs/board_queen.png"), 
     url("src/imgs/board_king.png"), url("src/imgs/board.png");
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: 30vw 0, 0, 0, 0, 0, 0, 0, 0;
-    background-size: 100vw 100vh;
+    background-color: black;
 }
 
 /* Information blocks */
@@ -342,15 +342,4 @@ body {
 }
 #footer > p {
     text-align: center;
-}
-#sus {
-    margin: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: none;
-
-    color: white;
-    font-size: 1vw;
 }

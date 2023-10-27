@@ -1,5 +1,4 @@
 // Constants
-const TITLE_TIME = 15 * 1000;
 // Document elements
 const ROOT = document.documentElement;
 const TITLE_BLOCK = document.getElementById("title");
@@ -8,6 +7,34 @@ const NAME_BLOCKS = document.getElementsByClassName("name");
 const INFO_BLOCKS = document.getElementsByClassName("info");
 const SUS = document.getElementById("sus");
 // Animation positions
+// Display
+const TITLE_TIME = 15 * 1000;
+const INFO_SCROLL_AMOUNT = 0.25;  // Fraction of viewport heights
+const BACKGROUND = {
+    "scroll": CONTENT_BLOCK.offsetHeight / 25,  // Height in px
+    "size": [1, 0.75],  // Fraction of maximum dimension for landscape and portrait orientations
+    "offset": [1, 0.5],  // Offset from left and top in percentage of dimension
+    "positions": {
+        1: [[Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], [Infinity, 0], 
+        [Infinity, 0], [Infinity, 0], [0, 0]], 
+        2: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        3: [[0, 0], [-8, -5], [-8, -5], [0, -8], [0, -8], [0, -8], [0, -8], [0, -8], [-8, -5], [-8, -5]], 
+        4: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        5: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [3, -5], [5, -8], [5, -8], [5, -8]], 
+        6: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, -40], [0, -40], [0, -80], [0, -Infinity], [0, -Infinity]], 
+        7: [[0, 0], [0, 0], [-3, 4], [-3, 4], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+        8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    }
+}
+// Variables
+var backgroundSettings = {
+    "unit": "vw",
+    "offset": [
+        BACKGROUND["offset"][0] * (window.innerWidth - (window.innerHeight * BACKGROUND["size"][0])), 
+        window.innerHeight * (1 - BACKGROUND["size"][0])
+    ],
+    "positions": BACKGROUND["positions"],
+}
 const MOVE_POSITIONS = [
     "30vw 0, 0, 0, 0, 0, 0, 0, 0",
     "30vw 0, 0, -17vw -4vh, 0, 0, 0, 0, 0",
@@ -77,6 +104,74 @@ function toggleSections() {
         height += section.offsetHeight;
     }
 
+    // Display background animation
+    // Calculate animation stage
+    let moveSection = (CONTENT_BLOCK.offsetHeight - window.innerHeight - BACKGROUND["scroll"]) / (backgroundSettings["positions"][1].length - 1);
+    let move = Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight - BACKGROUND["scroll"]) / moveSection);
+    let moveAmount = 0;
+    if (move <= 0) {
+        move = 1;
+    } else if (move > backgroundSettings["positions"][1].length - 1) {
+        move = backgroundSettings["positions"][1].length;
+    } else {
+        moveAmount = ((window.scrollY - TITLE_BLOCK.offsetHeight - BACKGROUND["scroll"]) % moveSection) / moveSection;
+    }
+    // Calculate piece positions
+    var newPosition = [];
+    for (let piece in backgroundSettings["positions"]) {
+        currentMove = backgroundSettings["positions"][piece][Math.min(move, backgroundSettings["positions"][1].length - 1)];
+        oldMove = backgroundSettings["positions"][piece][move - 1];
+        newPosition.push(
+            `calc(${oldMove[0] + (currentMove[0] - oldMove[0]) * moveAmount}${backgroundSettings["unit"]} + ${backgroundSettings["offset"][0]}px) 
+            calc(${oldMove[1] + (currentMove[1] - oldMove[1]) * moveAmount}${backgroundSettings["unit"]} + ${backgroundSettings["offset"][1]}px)`);
+    }
+    // Update position
+    backgroundPosition = newPosition.join(", ")
+    if (CONTENT_BLOCK.style.backgroundPosition != backgroundPosition) {
+        CONTENT_BLOCK.style.backgroundPosition = backgroundPosition;
+    }
+}
+
+function updateSettings() {
+    // Update background for portrait vs landscape page orientation
+    var backgroundSize = window.getComputedStyle(CONTENT_BLOCK).getPropertyValue("background-size");
+    if (window.innerHeight * BACKGROUND["size"][0] > window.innerWidth * BACKGROUND["size"][1]) {
+        backgroundSettings["unit"] = "vw";
+        backgroundSettings["offset"] = [
+            (window.innerWidth * (1 - BACKGROUND["size"][1])), 
+            BACKGROUND["offset"][1] * (window.innerHeight - (window.innerWidth * BACKGROUND["size"][1]))
+        ];
+        if (!backgroundSize.includes(` ${window.innerWidth * BACKGROUND["size"][1]}`)) {
+            CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][1] * 100}vw ${BACKGROUND["size"][1] * 100}vw`;
+        }
+    } else {
+        backgroundSettings["unit"] = "vh";
+        backgroundSettings["offset"] = [
+            BACKGROUND["offset"][0] * (window.innerWidth - (window.innerHeight * BACKGROUND["size"][0])), 
+            window.innerHeight * (1 - BACKGROUND["size"][0])
+        ];
+        if (!backgroundSize.includes(` ${window.innerHeight}`)) {
+            CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][0] * 100}vh ${BACKGROUND["size"][0] * 100}vh`;
+        }
+    }
+    // Update amount for infinite movement
+    for (let piece in BACKGROUND["positions"]) {
+        for (let positionIndex = 0; positionIndex < BACKGROUND["positions"][piece].length; positionIndex++) {
+            for (let direction = 0; direction < BACKGROUND["positions"][piece][positionIndex].length; direction++) {
+                if (Math.abs(BACKGROUND["positions"][piece][positionIndex][direction]) == Infinity) {
+                    if (BACKGROUND["unit"] == "vw") {
+                        BACKGROUND["positions"][piece][positionIndex][direction] = Math.sign(BACKGROUND["positions"][piece][positionIndex][direction]) * 
+                        (window.innerHeight * BACKGROUND["size"][0]) / (window.innerWidth * BACKGROUND["size"][1]) * 100;
+                    } else {
+                        BACKGROUND["positions"][piece][positionIndex][direction] = Math.sign(BACKGROUND["positions"][piece][positionIndex][direction]) * 
+                        (window.innerWidth * BACKGROUND["size"][1]) / (window.innerHeight * BACKGROUND["size"][0]) * 100;
+                    }
+                }
+            }
+        }
+    }
+    // Update background sections
+    toggleSections();
     // Toggle background animations
     // Calculate background iteration
     var move = Math.max(0, Math.ceil((window.scrollY - TITLE_BLOCK.offsetHeight) / 
@@ -100,6 +195,7 @@ function toggleSections() {
 }
 
 // Events
+window.addEventListener("resize", updateSettings);
 window.addEventListener("scroll", toggleSections);
-window.onload = toggleSections;
+window.onload = updateSettings;
 setInterval(toggleName, TITLE_TIME);
