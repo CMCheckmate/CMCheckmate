@@ -9,7 +9,7 @@ const SUS = document.getElementById("sus");
 // Animation positions
 // Display
 const TITLE_TIME = 15 * 1000;
-const INFO_SCROLL_AMOUNT = 0.25;  // Fraction of viewport heights
+const INFO_SCROLL = 0.1;  // Fraction of viewport height
 const BACKGROUND = {
     "scroll": CONTENT_BLOCK.offsetHeight / 25,  // Height in px
     "size": [1, 0.75],  // Fraction of maximum dimension for landscape and portrait orientations
@@ -49,6 +49,8 @@ var backgroundSettings = {
 // Functions
 function toggleAnimation(element, name, duration) {
     // Initialise and prevent reanimation
+    element.style.animation = "none";
+    element.offsetHeight;
     element.style.animation = `${name} ${duration / 1000}s`;
     element.style.pointerEvents = "none";
 
@@ -82,21 +84,22 @@ function toggleSections() {
     var height = TITLE_BLOCK.offsetHeight;
     for (let section of INFO_BLOCKS) {
         // Information block in view
-        if (window.scrollY + window.innerHeight * 0.25 > height) {
+        if (window.scrollY + window.innerHeight * INFO_SCROLL > height) {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
-                section.style.animation = 'none';
+                section.style.animation = "none";
                 section.offsetHeight;
                 section.style.animation = "SlideIn 0.5s";
                 section.style.transform = "translateX(0)";
             }
         // Information block out of view
         } else if (section.style.animationDirection != "reverse" && section.style.animationName != "") {
-            section.style.animation = 'none';
+            section.style.animation = "none";
             section.offsetHeight;
             section.style.animation = "SlideIn 0.5s reverse";
             section.style.transform = "translateX(-110%)";
+        } else if (section.style.transform != "translateX(-110%)") {
+            section.style.transform = "translate(-110%)";
         }
-
         height += section.offsetHeight;
     }
 
@@ -130,7 +133,6 @@ function toggleSections() {
 
 function updateSettings() {
     // Update background for portrait vs landscape page orientation
-    var backgroundSize = window.getComputedStyle(CONTENT_BLOCK).getPropertyValue("background-size");
     if (window.innerHeight * BACKGROUND["size"][0] > window.innerWidth * BACKGROUND["size"][1]) {
         backgroundSettings["unit"] = "vw";
         backgroundSettings["offset"] = [
@@ -138,9 +140,7 @@ function updateSettings() {
             BACKGROUND["offset"][1] * (window.innerHeight - (window.innerWidth * BACKGROUND["size"][1]))
         ];
         backgroundSettings["positions"] = BACKGROUND["positions"][1];
-        if (!backgroundSize.includes(` ${window.innerWidth * BACKGROUND["size"][1]}`)) {
-            CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][1] * 100}vw ${BACKGROUND["size"][1] * 100}vw`;
-        }
+        CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][1] * 100}vw ${BACKGROUND["size"][1] * 100}vw`;
     } else {
         backgroundSettings["unit"] = "vh";
         backgroundSettings["offset"] = [
@@ -148,9 +148,7 @@ function updateSettings() {
             window.innerHeight * (1 - BACKGROUND["size"][0])
         ];
         backgroundSettings["positions"] = BACKGROUND["positions"][0];
-        if (!backgroundSize.includes(` ${window.innerHeight}`)) {
-            CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][0] * 100}vh ${BACKGROUND["size"][0] * 100}vh`;
-        }
+        CONTENT_BLOCK.style.backgroundSize = `${BACKGROUND["size"][0] * 100}vh ${BACKGROUND["size"][0] * 100}vh`;
     }
     // Update amount for infinite movement
     for (let piece in backgroundSettings["positions"]) {

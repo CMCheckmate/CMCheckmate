@@ -172,6 +172,7 @@ body {
     margin-left: 5%;
     
     animation: typing 15s steps(30, end) infinite, blinkCaret 1s infinite;
+    
     border-right: 0.8vw solid white;
 
     line-height: 0;
@@ -196,29 +197,34 @@ body {
 
     transform: translateY(-10%);
 
-    background-image: url("src/imgs/pawn.png");
-    background-size: 6vw 6vw;
+    animation: Promote 2s;
+
+    background-image: url("src/imgs/pawn.png"), url("src/imgs/pawn_select.png");
+    background-size: 6vw, 0;
     background-color: transparent;
     border: none;
 }
 #username > button:hover {
     transform: translateY(-7%);
 
-    cursor: pointer;
+    background-size: 0, 6vw;
 
-    background-image: url("src/imgs/pawn_select.png");
+    cursor: pointer;
 }
  
 /* Information block */
 #content {
     display: flex;
     flex-direction: column;
-    
+
+    image-rendering: -webkit-optimize-contrast;
     background-image: url("src/imgs/board_win.png"), url("src/imgs/board_bishop.png"), url("src/imgs/board_knight.png"), 
     url("src/imgs/board_pawns.png"), url("src/imgs/board_rook.png"), url("src/imgs/board_queen.png"), 
     url("src/imgs/board_king.png"), url("src/imgs/board.png");
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: 50vw 100vh;
+    background-position: right;
     background-color: rgb(0, 0, 0);
 }
 
@@ -230,7 +236,6 @@ body {
     margin: 3%;
     padding: 2%;
 
-    transform: translateX(-110%);
     animation-timing-function: ease-out;
 
     display: flex;
