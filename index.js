@@ -1,6 +1,5 @@
 // Constants
 // Document elements
-const ROOT = document.documentElement;
 const TITLE_BLOCK = document.getElementById("title");
 const CONTENT_BLOCK = document.getElementById("content");
 const NAME_BLOCKS = document.getElementsByClassName("name");
@@ -84,7 +83,7 @@ function toggleSections() {
     var height = TITLE_BLOCK.offsetHeight;
     for (let section of INFO_BLOCKS) {
         // Information block in view
-        if (window.scrollY + window.innerHeight * INFO_SCROLL > height) {
+        if (window.scrollY + window.innerHeight * INFO_SCROLL > height || window.scrollY + window.innerHeight >= document.body.offsetHeight) {
             if ((section.style.animationDirection == "reverse" || section.style.animationName == "")) {
                 section.style.animation = "none";
                 section.offsetHeight;
