@@ -142,12 +142,12 @@ body {
 
     text-align: center;
     font-family:'Courier New', Courier, monospace;
-    font-size: 150%;
 }
 #title > span > h3 {
     font-weight: 500;
 }
 #title > span > button {
+    margin: 0.5%;
     position: relative;
     top: -15%;
 
@@ -158,10 +158,12 @@ body {
 
     line-height: 50%;
     color: white;
-    font-size: 200%;
+    font-size: 250%;
 }
 #title > span > button:hover {
     cursor: pointer;
+
+    color: rgb(150, 150, 150);
 }
 
 /* Display names */
@@ -170,6 +172,7 @@ body {
     
     overflow: hidden;
     margin-left: 5%;
+    padding: 0.5% 0;
     
     animation: typing 15s steps(30, end) infinite, blinkCaret 1s infinite;
     
@@ -180,13 +183,9 @@ body {
     font-size: 3vw;
 }
 #actualName {
-    margin: 0.5% 0;
-
     display: none;
 }
 #username {
-    margin: 0.5% 0;
-
     display: flex;
     align-items: center;
 }
@@ -199,15 +198,15 @@ body {
 
     animation: Promote 2s;
 
-    background-image: url("src/imgs/pawn.png"), url("src/imgs/pawn_select.png");
-    background-size: 6vw, 0;
+    background-image: url("src/imgs/pawn.png"), url("src/imgs/pawn_select.png"), url("src/imgs/queen.png");
+    background-size: 6vw, 0, 0;
     background-color: transparent;
     border: none;
 }
 #username > button:hover {
     transform: translateY(-7%);
 
-    background-size: 0, 6vw;
+    background-image: url("src/imgs/pawn_select.png");
 
     cursor: pointer;
 }
