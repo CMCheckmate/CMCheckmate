@@ -183,6 +183,8 @@ body {
     font-size: 3vw;
 }
 #actualName {
+    margin: 0.5% 0;
+
     display: none;
 }
 #username {

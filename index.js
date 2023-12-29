@@ -44,6 +44,10 @@ var backgroundSettings = {
     ],
     "positions": BACKGROUND["positions"][0],
 }
+// Display
+const TITLE_TIME = 15 * 1000;
+const INFO_SCROLL_AMOUNT = 0.25;  // Percentage of viewport heights
+const BACKGROUND_SCROLL_AMOUNT = CONTENT_BLOCK.offsetHeight / 25;
 
 // Functions
 function toggleAnimation(element, name, duration) {
