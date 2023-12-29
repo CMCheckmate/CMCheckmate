@@ -5,6 +5,7 @@ const CONTENT_BLOCK = document.getElementById("content");
 const NAME_BLOCKS = document.getElementsByClassName("name");
 const INFO_BLOCKS = document.getElementsByClassName("info");
 const SUS = document.getElementById("sus");
+
 // Animation positions
 // Display
 const TITLE_TIME = 15 * 1000;
@@ -35,6 +36,7 @@ const BACKGROUND = {
         8: [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
     }]
 }
+
 // Variables
 var backgroundSettings = {
     "unit": "vw",
