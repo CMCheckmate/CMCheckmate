@@ -274,6 +274,15 @@ body {
 #projects > ul > li > a:hover {
     color: rgb(107, 107, 107);
 }
+#projects > ul > li > a > img {
+    width: 10%;
+    transform: translateY(35%);
+
+    margin: 0 3%;
+}
+#projects > span {
+    font-size: 75%;
+}
 
 /* Contact block */
 #socials {
