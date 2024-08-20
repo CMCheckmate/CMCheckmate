@@ -1,208 +1,291 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    
     <title>CMCheckmate</title>
-    <link rel="icon" href="src/imgs/favicon.png">
-    
+    <link rel="icon" href="src/imgs/favicon.png" />
+
     <link href="index.css" rel="stylesheet" type="text/css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="main">
-        <!-- Header -->
-        <div id="header">
-            <a href="index.html">
-                <img alt="logo_icon" src="src/imgs/pawn.png">
+      <!-- Header -->
+      <div id="header">
+        <a href="index.html">
+          <img alt="logo_icon" src="src/imgs/pawn.png" />
+        </a>
+        <button
+          id="aboutButton"
+          onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });"
+        >
+          About
+        </button>
+        <button
+          id="socialsButton"
+          onclick="document.getElementById('socials').scrollIntoView({ behavior: 'smooth' });"
+        >
+          Socials
+        </button>
+      </div>
+
+      <!-- Home screen -->
+      <div id="title">
+        <div id="nameBlock">
+          <div class="name" id="username">
+            <h1>CMCheckmate(</h1>
+            <button onclick="toggleAnimation(this, 'Promote', 2000);"></button>
+            <h1>)</h1>
+          </div>
+          <div class="name" id="actualName">
+            <h1>Ming Ray Goy</h1>
+          </div>
+        </div>
+        <h2>Casual Program Developer</h2>
+        <span>
+          <h3>Scroll</h3>
+          <button
+            onclick="document.getElementById('content').scrollIntoView({ behavior: 'smooth' });"
+          >
+            ↓
+          </button>
+        </span>
+      </div>
+
+      <!-- Main information -->
+      <div id="content">
+        <!-- Introduction -->
+        <div class="info" id="about">
+          <h2>About Me</h2>
+
+          <p>Hi! My name is Ming Ray Goy.</p>
+          <p>
+            I'm a 20-year old second year student studying Software Engineering
+            at the University of Auckland.
+          </p>
+          <p>
+            I love coding and enjoy making side projects such as GUI Games, Apps
+            and am currently very interested in all forms of AI. I am also
+            capable of simple Fullstack Web Development and have some experience
+            working with Databases.
+          </p>
+          <p>
+            Also, I'm Malaysian and can fluently speak English and Chinese,
+            along with Cantonese, Malay, very basic Japanese and Hokkien.
+          </p>
+        </div>
+
+        <!-- Coding languages -->
+        <div class="info" id="languages">
+          <h2>Languages</h2>
+
+          <p>
+            I've created programs, games and websites in a couple of languages.
+          </p>
+          <p>My experience involves:</p>
+          <ul>
+            <li>
+              Python
+              <img alt="python_icon" src="src/imgs/python.png" />
+            </li>
+
+            <li>
+              C/C++
+              <img alt="C_icon" src="src/imgs/C.png" />
+              <img alt="C++_Icon" src="src/imgs/C++.png" />
+            </li>
+
+            <li>
+              Java
+              <img alt="Java" src="src/imgs/Java.png" />
+            </li>
+
+            <li>
+              HTML/CSS/Javascript
+              <img alt="HTML_icon" src="src/imgs/HTML.png" />
+              <img alt="CSS_icon" src="src/imgs/CSS.png" />
+              <img alt="Javascript_icon" src="src/imgs/JS.png" />
+            </li>
+
+            <li>
+              Next.js/React/Tailwind
+              <img alt="Next_icon" src="src/imgs/Nextjs.png" />
+              <img alt="React_icon" src="src/imgs/React.png" />
+              <img alt="Tailwind_icon" src="src/imgs/Tailwind.png" />
+            </li>
+
+            <li>
+              SQL/PHP
+              <img alt="SQL_icon" src="src/imgs/SQL.png" />
+              <img alt="PHP_icon" src="src/imgs/PHP.png" />
+            </li>
+
+            <li>
+              MATLAB/R
+              <img alt="MATLAB_icon" src="src/imgs/MATLAB.png" />
+              <img alt="R_icon" src="src/imgs/R.png" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- Coded projects -->
+        <div class="info" id="projects">
+          <h2>Projects</h2>
+
+          <p>Here are some of the projects I've been working on:</p>
+          <ul>
+            <li>
+              <a href="https://az-fitness.vercel.app" target="_blank">
+                <i>AZ-Fitness</i>
+                <img alt="AZ-Fitness_icon" src="src/imgs/AZ_Fitness.png" />
+              </a>
+              <p>
+                Profesional website for personal trainer with fitness advice
+                with session booking system
+              </p>
+            </li>
+            <li>
+              <a href="https://monkeyspeak.vercel.app" target="_blank">
+                <i>Monkeyspeak</i>
+                <img alt="monkeyspeak_icon" src="src/imgs/monkeyspeak.png" />
+              </a>
+              <p>
+                Monkeytype, but you speak instead. Group collaborated project
+                for a hackathon.
+              </p>
+            </li>
+            <li>
+              <a href="https://vidtoascii.000webhostapp.com" target="_blank">
+                <i>Video To ASCII</i>
+                <img alt="Vid-to-ASCII_icon" src="src/imgs/Bad_Apple.png" />
+              </a>
+              <p>Converts videos into monochromatic text art</p>
+            </li>
+            <li>
+              <a href="https://cmcheckmate.github.io/DietLog/" target="_blank">
+                <i>DietLog</i>
+                <img alt="DietLog_icon" src="src/imgs/DietLog.png" />
+              </a>
+              <p>
+                Provides nutritional information and lets users track their
+                meals; Made for my Year 13 Technology Scholarship Project
+                (Outdated)
+              </p>
+            </li>
+            <li>
+              <a
+                href="https://github.com/CMCheckmate/Board-Games"
+                target="_blank"
+              >
+                <i>Terminal Board Games</i>
+                <img
+                  alt="Terminal_Board_Games_icon"
+                  src="src/imgs/Board_Games.png"
+                />
+              </a>
+              <p>
+                Collection of games including minesweeper, sudoku, tic tac toe,
+                etc from the command line
+              </p>
+            </li>
+            <li>
+              <a
+                href="https://github.com/CMCheckmate/GUI-Games"
+                target="_blank"
+              >
+                <i>GUI Games</i>
+                <img alt="GUI_Games_icon" src="src/imgs/Snake.png" />
+              </a>
+              <p>GUI games made since I started learning to code from 2019</p>
+            </li>
+          </ul>
+
+          <span
+            ><i
+              >*This website is actually made without using a framework lol</i
+            ></span
+          >
+        </div>
+
+        <!-- Qualifications -->
+        <div class="info" id="qualifications">
+          <h2>Qualifications</h2>
+
+          <p>Completed NCEA Level 3 with Overall Excellence.</p>
+          <p>
+            Achieved the “Scholarship Award” in 2022 with 3 Scholarships in:
+          </p>
+          <ul>
+            <li>Technology</li>
+            <li>Calculus</li>
+            <li>Physics</li>
+          </ul>
+        </div>
+
+        <!-- Contacts -->
+        <div class="info" id="socials">
+          <h2>Socials</h2>
+
+          <p>Feel free to contact me through any of my links below:</p>
+          <div id="links">
+            <a href="https://github.com/CMCheckmate" target="_blank">
+              <img alt="github_icon" src="src/imgs/github.png" />
+              <span>
+                <h3>Github</h3>
+                <i>CMCheckmate</i>
+              </span>
             </a>
-            <button id="aboutButton" onclick="document.getElementById('about').scrollIntoView({ behavior: 'smooth' });">About</button>
-            <button id="socialsButton" onclick="document.getElementById('socials').scrollIntoView({ behavior: 'smooth' });">Socials</button>
+            <a href="https://discord.com/users/cmcheckmate" target="_blank">
+              <img alt="discord_icon" src="src/imgs/discord.png" />
+              <span>
+                <h3>Discord</h3>
+                <i>cmcheckmate</i>
+              </span>
+            </a>
+            <a href="mailto:mingraygoy@gmail.com" target="_blank">
+              <img alt="gmail_icon" src="src/imgs/gmail.png" />
+              <span>
+                <h3>Email</h3>
+                <i>mingraygoy@gmail.com</i>
+              </span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ming-ray-goy-3a5100297/"
+              target="_blank"
+            >
+              <img alt="linkedin_icon" src="src/imgs/linkedin.png" />
+              <span>
+                <h3>LinkedIn</h3>
+                <i>Ming Ray Goy</i>
+              </span>
+            </a>
+          </div>
         </div>
+      </div>
 
-        <!-- Home screen -->
-        <div id="title">
-            <div id="nameBlock">
-                <div class="name" id="username">
-                    <h1>CMCheckmate(</h1>
-                    <button onclick="toggleAnimation(this, 'Promote', 2000);"></button>
-                    <h1>)</h1>
-                </div>
-                <div class="name" id="actualName">
-                    <h1>Ming Ray Goy</h1>
-                </div>
-            </div>
-            <h2>Casual Program Developer</h2>
-            <span>
-                <h3>Scroll</h3>
-                <button onclick="document.getElementById('content').scrollIntoView({ behavior: 'smooth' });">↓</button>
-            </span>
-        </div>
-
-        <!-- Main information -->
-        <div id="content">
-            <!-- Introduction -->
-            <div class="info" id="about">
-                <h2>About Me</h2>
-
-                <p>Hi! My name is Ming Ray Goy.</p>
-                <p>I'm a 19-year old second year student studying Software Engineering at the University of Auckland.</p>
-                <p>I love to code and make side projects with my free time. My programming skills are mainly self taught and I have started coding around 2019.</p>
-                <p>Also, I'm Malaysian and can fluently speak English and Chinese, along with Cantonese, Malay and Hokkien.</p>
-            </div>
-        
-            <!-- Coding languages -->
-            <div class="info" id="languages">
-                <h2>Languages</h2>
-
-                <p>I've created programs, games and websites in a couple of languages.</p>
-                <p>My experience involves: </p>
-                <ul>
-                    <li>
-                        Python
-                        <img alt="python_icon" src="src/imgs/python.png">
-                    </li>
-
-                    <li>
-                        C/C++
-                        <img alt="C_icon" src="src/imgs/C.png">
-                        <img alt="C++_Icon" src="src/imgs/C++.png">
-                    </li>
-
-                    <li>
-                        Java
-                        <img alt="Java" src="src/imgs/Java.png">
-                    </li>
-
-                    <li>
-                        HTML/CSS/Javascript
-                        <img alt="HTML_icon" src="src/imgs/HTML.png">
-                        <img alt="CSS_icon" src="src/imgs/CSS.png">
-                        <img alt="Javascript_icon" src="src/imgs/JS.png">
-                    </li>
-
-                    <li>
-                        Next.js/React/Tailwind
-                        <img alt="Next_icon" src="src/imgs/Nextjs.png">
-                        <img alt="React_icon" src="src/imgs/React.png">
-                        <img alt="Tailwind_icon" src="src/imgs/Tailwind.png">
-                    </li>
-
-                    <li>
-                        SQL/PHP
-                        <img alt="SQL_icon" src="src/imgs/SQL.png">
-                        <img alt="PHP_icon" src="src/imgs/PHP.png">
-                    </li>
-
-                    <li>
-                        MATLAB/R
-                        <img alt="MATLAB_icon" src="src/imgs/MATLAB.png">
-                        <img alt="R_icon" src="src/imgs/R.png">
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Coded projects -->
-            <div class="info" id="projects">
-                <h2>Projects</h2>
-
-                <p>Here are some of the projects I've been working on: </p>
-                <ul>
-                    <li>
-                        <a href="https://az-fitness.vercel.app" target="_blank">
-                            <i>AZ-Fitness</i>
-                            <img alt="AZ-Fitness_icon" src="src/imgs/AZ_Fitness.png">
-                        </a>
-                        <p>Website for personal trainer with fitness advice with session booking system</p>
-                    </li>
-                    <li>
-                        <a href="https://vidtoascii.000webhostapp.com" target="_blank">
-                            <i>Video To ASCII</i>
-                            <img alt="Vid-to-ASCII_icon" src="src/imgs/Bad_Apple.png">
-                        </a>
-                        <p>Converts videos into monochromatic text art</p>
-                    </li>
-                    <li>
-                        <a href="https://cmcheckmate.github.io/DietLog/" target="_blank">
-                            <i>DietLog</i>
-                            <img alt="DietLog_icon" src="src/imgs/DietLog.png">
-                        </a>
-                        <p>Provides nutritional information and lets users track their meals; Made for my Year 13 Technology Scholarship Project (Outdated)</p>
-                    </li>
-                    <li>
-                        <a href="https://github.com/CMCheckmate/Board-Games" target="_blank">
-                            <i>Terminal Board Games</i>
-                            <img alt="Terminal_Board_Games_icon" src="src/imgs/Board_Games.png">
-                        </a>
-                        <p>Collection of games including minesweeper, sudoku, tic tac toe, etc from the command line</p>
-                    </li>
-                    <li>
-                        <a href="https://github.com/CMCheckmate/GUI-Games" target="_blank">
-                            <i>GUI Games</i>
-                            <img alt="GUI_Games_icon" src="src/imgs/Snake.png">
-                        </a>
-                        <p>GUI games made since I started learning to code from 2019</p>
-                    </li>
-                </ul>
-
-                <span><i>*This website is actually made without using a framework lol</i></span>
-            </div>
-
-            <!-- Qualifications -->
-            <div class="info" id="qualifications">
-                <h2>Qualifications</h2>
-            
-                <p>Completed NCEA Level 3 with Overall Excellence.</p>
-                <p>Achieved the “Scholarship Award” in 2022 with 3 Scholarships in: </p>
-                <ul>
-                    <li>Technology</li>
-                    <li>Calculus</li>
-                    <li>Physics</li>
-                </ul>
-            </div>
-
-            <!-- Contacts -->
-            <div class="info" id="socials">
-                <h2>Socials</h2>
-
-                <p>Feel free to contact me through any of my links below: </p>
-                <div id="links">
-                    <a href="https://github.com/CMCheckmate" target="_blank">
-                        <img alt="github_icon" src="src/imgs/github.png">
-                        <span>
-                            <h3>Github</h3>
-                            <i>CMCheckmate</i>
-                        </span>
-                    </a>
-                    <a href="https://discord.com/users/cmcheckmate" target="_blank">
-                        <img alt="discord_icon" src="src/imgs/discord.png">
-                        <span>
-                            <h3>Discord</h3>
-                            <i>cmcheckmate</i>
-                        </span>
-                    </a>
-                    <a href="mailto:mingraygoy@gmail.com" target="_blank">
-                        <img alt="gmail_icon" src="src/imgs/gmail.png">
-                        <span>
-                            <h3>Email</h3>
-                            <i>mingraygoy@gmail.com</i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer">
-            <h4>© Ming Ray Goy 2023</h4>
-            <p>All image rights are of their respective owners.</p>
-        </div>
-        <p id="sus" style="margin: 0; position: absolute; top: 0; left: 0; color: white; display: none; font-size: 1vw;">ඞ</p>
+      <!-- Footer -->
+      <div id="footer">
+        <h4>© Ming Ray Goy 2023</h4>
+        <p>All image rights are of their respective owners.</p>
+      </div>
+      <p
+        id="sus"
+        style="
+          margin: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: white;
+          display: none;
+          font-size: 1vw;
+        "
+      >
+        ඞ
+      </p>
     </div>
 
     <script src="index.js"></script>
-</body>
-
+  </body>
 </html>
