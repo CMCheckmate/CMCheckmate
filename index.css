@@ -310,6 +310,17 @@ body {
 
   list-style-position: inside;
 }
+.info a {
+  color: white;
+}
+.info a:hover {
+  color: rgb(107, 107, 107);
+}
+.info img {
+  width: 10%;
+  
+  transform: translateY(35%);
+}
 
 /* Language icons */
 #languages > ul > li > img {
